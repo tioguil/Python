@@ -1,4 +1,13 @@
-from sqlalchemy import create_engine
+import psycopg2
 
-engine = create_engine('postgresql://usr:pass@localhost:5432/sqlalchemy')
+con = psycopg2.connect(host='localhost', database='atlas', user='postgres', password='123456')
 
+cur = con.cursor()
+#sql = "select * from usuario"
+#cur.execute(sql)
+#con.commit()
+cur.execute('select * from usuario')
+recset = cur.fetchall()
+for rec in recset:
+    print (rec)
+con.close()
